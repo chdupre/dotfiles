@@ -1,64 +1,121 @@
-set expandtab
-set tabstop=8
-set softtabstop=4
-set shiftwidth=4
-set autoindent
-:syntax on
-filetype plugin on
-set backspace=2
-set hlsearch
+" Identify platform {
+        silent function! OSX()
+            return has('macunix')
+        endfunction
+        silent function! LINUX()
+            return has('unix') && !has('macunix') && !has('win32unix')
+        endfunction
+        silent function! WINDOWS()
+            return (has('win16') || has('win32') || has('win64'))
+        endfunction
+" }
+
+set nocompatible              " be iMproved, required
+filetype off                  " required
+
+" set the runtime path to include Vundle and initialize
+set rtp+=~/.vim/bundle/vundle/
+set rtp+=~/.vim/bundle/ctrlp.vim
+call vundle#rc()
+Bundle 'scrooloose/nerdtree'
+Bundle 'davidhalter/jedi-vim'
+Bundle 'bling/vim-airline'
+Bundle 'altercation/vim-colors-solarized'
+Bundle 'klen/python-mode'
+Bundle 'kien/ctrlp.vim'
+Bundle 'ervandew/supertab'
+
+if WINDOWS()
+    set diffexpr=WindowdDiff()
+endif
+
+if has("gui_running")
+    if WINDOWS()
+        set guifont=Source_Code_Pro:h12:cANSI
+    else
+        set guifont=Source\ Code\ Pro\ 12
+    endif
+endif
+colorscheme solarized
+set background=dark
 
 " Execute file being edited with <Shift> + e:
-map <buffer> <S-e> :w<CR>:!/usr/bin/env python % <CR>
+"if WINDOWS()
+"else
+"    map <buffer> <S-e> :w<CR>:!/usr/bin/env python % <CR>
+"endif
+map <buffer> <S-e> :w<CR>:!c:\Python27\python.exe % <CR>
 
-set rtp+=~/.vim/bundle/vundle/
-call vundle#rc()
-Bundle 'gmarik/vundle'
-Bundle 'Lokaltog/powerline', {'rtp': 'powerline/bindings/vim/'}
-Bundle 'scrooloose/nerdtree'
-Bundle 'Valloric/YouCompleteMe'
-" Powerline setup
-" set guifont=DejaVu\ Sans\ Mono\ for\ Powerline\ 9
-set laststatus=2
+"set textwidth=79  " lines longer than 79 columns will be broken
+set shiftwidth=4  " operation >> indents 4 columns; << unindents 4 columns
+set tabstop=4     " an hard TAB displays as 4 columns
+set expandtab     " insert spaces when hitting TABs
+set softtabstop=4 " insert/delete 4 spaces when hitting a TAB/BACKSPACE
+set shiftround    " round indent to multiple of 'shiftwidth'
+set autoindent    " align the new line indent with the previous line
+
+set backspace=2   " make backspace work like most other apps
+
+
+syntax on
+filetype plugin indent on
+set nobackup
+set noswapfile
+set hlsearch
 
 " Nerd Tree
-map <F2> :NERDTreeToggle<CR>
+ map <F2> :NERDTreeToggle<CR>
 
-" Pathogen load
-filetype off
-call pathogen#infect()
-call pathogen#helptags()
-filetype plugin indent on
-syntax on
-
-autocmd filetype python set colorcolumn=80
-autocmd filetype python hi ColorColumn ctermbg=lightgrey guibg=lightgrey
+"When more than one match, list all matches and
+"complete till longest common string.
+set wildmode=longest,list
 
 
-"python mode
-" Disable pylint checking every save
-"let g:pymode_lint_write = 0
-" Set key 'R' for run python code
-"let g:pymode_run_key = 'R'
-" Load the whole plugin
-"let g:pymode = 1
-" Load show documentation plugin
-"let g:pymode_doc = 1
-" Key for show python documentation
-"let g:pymode_doc_key = 'K'
 
-:augroup gzip
-    :  autocmd!
-    :  autocmd BufReadPre,FileReadPre   *.gz set bin
-    :  autocmd BufReadPost,FileReadPost   *.gz '[,']!gunzip
-    :  autocmd BufReadPost,FileReadPost *.gz set nobin
-    :  autocmd BufReadPost,FileReadPost   *.gz execute ":doautocmd BufReadPost " . expand("%:r")
-    :  autocmd BufWritePost,FileWritePost   *.gz !mv <afile> <afile>:r
-    :  autocmd BufWritePost,FileWritePost *.gz !gzip <afile>:r
+let g:pymode_folding = 0    "disable folding by default
+let g:pymode_lint = 1       "Turn on code checking
+let g:pymode_lint_write = 1
+let g:pymode_rope = 0 
+let g:pymode_doc = 0
+let g:pymode_run = 0
+let g:pymode_breakpoint = 1
 
-    :  autocmd FileAppendPre        *.gz !gunzip <afile>
-    :  autocmd FileAppendPre      *.gz !mv <afile>:r <afile>
-    :  autocmd FileAppendPost       *.gz !mv <afile> <afile>:r
-    :  autocmd FileAppendPost     *.gz !gzip <afile>:r
-:augroup END
+let g:SuperTabDefaultCompletionType = 'context'
+augroup vimrc_autocmds
+    autocmd!
+    if WINDOWS()
+        autocmd FileType python set colorcolumn=80
+        autocmd FileType python highlight ColorColumn ctermbg=lightgrey guibg=darkgrey
+    else 
+        autocmd FileType python set colorcolumn=80
+        autocmd FileType python highlight ColorColumn ctermbg=lightgrey guibg=lightgrey
+    endif
+augroup END
 
+if has("autocmd")
+  au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
+endif
+
+function! WindowdDiff()
+  let opt = '-a --binary '
+  if &diffopt =~ 'icase' | let opt = opt . '-i ' | endif
+  if &diffopt =~ 'iwhite' | let opt = opt . '-b ' | endif
+  let arg1 = v:fname_in
+  if arg1 =~ ' ' | let arg1 = '"' . arg1 . '"' | endif
+  let arg2 = v:fname_new
+  if arg2 =~ ' ' | let arg2 = '"' . arg2 . '"' | endif
+  let arg3 = v:fname_out
+  if arg3 =~ ' ' | let arg3 = '"' . arg3 . '"' | endif
+  let eq = ''
+  if $VIMRUNTIME =~ ' '
+    if &sh =~ '\<cmd'
+      let cmd = '""' . $VIMRUNTIME . '\diff"'
+      let eq = '"'
+    else
+      let cmd = substitute($VIMRUNTIME, ' ', '" ', '') . '\diff"'
+    endif
+  else
+    let cmd = $VIMRUNTIME . '\diff'
+  endif
+  silent execute '!' . cmd . ' ' . opt . arg1 . ' ' . arg2 . ' > ' . arg3 . eq
+endfunction
