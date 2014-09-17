@@ -14,7 +14,11 @@ set nocompatible              " be iMproved, required
 filetype off                  " required
 
 " set the runtime path to include Vundle and initialize
-set rtp+=~/.vim/bundle/vundle/
+if WINDOWS()
+    set rtp+=~/.vim/bundle/vundle/
+else
+    set rtp+=~/.vim/bundle/Vundle.vim/
+endif
 set rtp+=~/.vim/bundle/ctrlp.vim
 call vundle#rc()
 Bundle 'scrooloose/nerdtree'
@@ -24,6 +28,7 @@ Bundle 'altercation/vim-colors-solarized'
 Bundle 'klen/python-mode'
 Bundle 'kien/ctrlp.vim'
 Bundle 'ervandew/supertab'
+Bundle 'derekwyatt/vim-scala'
 
 if WINDOWS()
     set diffexpr=WindowdDiff()
@@ -37,14 +42,15 @@ if has("gui_running")
     endif
 endif
 colorscheme solarized
+let g:solarized_termcolors=256
 set background=dark
 
 " Execute file being edited with <Shift> + e:
-"if WINDOWS()
-"else
-"    map <buffer> <S-e> :w<CR>:!/usr/bin/env python % <CR>
-"endif
+if WINDOWS()
 map <buffer> <S-e> :w<CR>:!c:\Python27\python.exe % <CR>
+else
+    map <buffer> <S-e> :w<CR>:!/usr/bin/env python % <CR>
+endif
 
 "set textwidth=79  " lines longer than 79 columns will be broken
 set shiftwidth=4  " operation >> indents 4 columns; << unindents 4 columns
