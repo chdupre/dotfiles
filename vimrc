@@ -14,11 +14,7 @@ set nocompatible              " be iMproved, required
 filetype off                  " required
 
 " set the runtime path to include Vundle and initialize
-if WINDOWS()
-    set rtp+=~/.vim/bundle/vundle/
-else
-    set rtp+=~/.vim/bundle/Vundle.vim/
-endif
+set rtp+=~/.vim/bundle/vundle/
 set rtp+=~/.vim/bundle/ctrlp.vim
 call vundle#rc()
 Bundle 'scrooloose/nerdtree'
