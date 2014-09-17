@@ -77,6 +77,9 @@ set hlsearch
 set wildmode=longest,list
 
 
+set splitbelow
+set splitright
+
 
 let g:pymode_folding = 0    "disable folding by default
 let g:pymode_lint = 1       "Turn on code checking
@@ -87,6 +90,8 @@ let g:pymode_run = 0
 let g:pymode_breakpoint = 1
 
 let g:SuperTabDefaultCompletionType = 'context'
+:set guioptions-=L "left hand side scrollbar is disabled
+
 augroup vimrc_autocmds
     autocmd!
     if WINDOWS()
