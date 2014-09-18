@@ -76,6 +76,7 @@ set wildmode=longest,list
 set splitbelow
 set splitright
 
+let g:jedi#use_tabs_not_buffers = 0 " new buffer when jumping around
 
 let g:pymode_folding = 0    "disable folding by default
 let g:pymode_lint = 1       "Turn on code checking
