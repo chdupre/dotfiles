@@ -27,6 +27,7 @@ Bundle 'ervandew/supertab'
 Bundle 'derekwyatt/vim-scala'
 Bundle 'tfnico/vim-gradle'
 Bundle 'scrooloose/syntastic'
+Bundle 'Raimondi/delimitMate'
 
 if WINDOWS()
     set diffexpr=WindowdDiff()
@@ -91,8 +92,7 @@ let g:pymode_breakpoint = 1
 let g:SuperTabDefaultCompletionType = 'context'
 :set guioptions-=L "left hand side scrollbar is disabled
 
-let g:syntastic_java_checker = 'javac'
-let g:syntastic_java_javac_classpath = "./lib/*.jar\n./src"
+"let g:syntastic_java_javac_classpath = "./lib/*.jar\n./src"
 
 augroup vimrc_autocmds
     autocmd!
