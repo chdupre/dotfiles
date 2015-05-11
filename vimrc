@@ -25,7 +25,7 @@ Bundle 'klen/python-mode'
 Bundle 'kien/ctrlp.vim'
 Bundle 'ervandew/supertab'
 Bundle 'derekwyatt/vim-scala'
-
+Bundle 'tfnico/vim-gradle'
 if WINDOWS()
     set diffexpr=WindowdDiff()
 endif
