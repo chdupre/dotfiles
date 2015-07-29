@@ -41,7 +41,7 @@ if has("gui_running")
     endif
 endif
 colorscheme solarized
-let g:solarized_termcolors=256
+"let g:solarized_termcolors=256
 set background=dark
 
 " Execute file being edited with <Shift> + e:
@@ -93,6 +93,7 @@ let g:SuperTabDefaultCompletionType = 'context'
 :set guioptions-=L "left hand side scrollbar is disabled
 
 "let g:syntastic_java_javac_classpath = "./lib/*.jar\n./src"
+let g:syntastic_check_on_wq = 0     " Don't check syntax when quitting.
 
 augroup vimrc_autocmds
     autocmd!
