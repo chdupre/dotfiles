@@ -14,9 +14,9 @@ set nocompatible              " be iMproved, required
 filetype off                  " required
 
 " set the runtime path to include Vundle and initialize
-set rtp+=~/.vim/bundle/vundle/
 set rtp+=~/.vim/bundle/ctrlp.vim
-call vundle#rc()
+set rtp+=~/.vim/bundle/Vundle.vim
+call vundle#begin()
 Bundle 'scrooloose/nerdtree'
 Bundle 'davidhalter/jedi-vim'
 Bundle 'bling/vim-airline'
@@ -28,6 +28,7 @@ Bundle 'derekwyatt/vim-scala'
 Bundle 'tfnico/vim-gradle'
 Bundle 'scrooloose/syntastic'
 Bundle 'Raimondi/delimitMate'
+call vundle#end() 
 
 if WINDOWS()
     set diffexpr=WindowdDiff()
