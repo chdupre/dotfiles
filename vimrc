@@ -19,8 +19,9 @@ set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
 Bundle 'scrooloose/nerdtree'
 Bundle 'davidhalter/jedi-vim'
-Bundle 'bling/vim-airline'
+Bundle 'vim-airline/vim-airline'
 Bundle 'altercation/vim-colors-solarized'
+Bundle 'tpope/vim-fugitive'
 Bundle 'klen/python-mode'
 Bundle 'kien/ctrlp.vim'
 Bundle 'ervandew/supertab'
@@ -28,7 +29,7 @@ Bundle 'derekwyatt/vim-scala'
 Bundle 'tfnico/vim-gradle'
 Bundle 'scrooloose/syntastic'
 Bundle 'Raimondi/delimitMate'
-call vundle#end() 
+call vundle#end()
 
 if WINDOWS()
     set diffexpr=WindowdDiff()
@@ -42,7 +43,7 @@ if has("gui_running")
     endif
 endif
 colorscheme solarized
-"let g:solarized_termcolors=256
+set t_Co=256
 set background=dark
 
 " Execute file being edited with <Shift> + e:
@@ -85,7 +86,7 @@ let g:jedi#use_tabs_not_buffers = 0 " new buffer when jumping around
 let g:pymode_folding = 0    "disable folding by default
 let g:pymode_lint = 1       "Turn on code checking
 let g:pymode_lint_write = 1
-let g:pymode_rope = 0 
+let g:pymode_rope = 0
 let g:pymode_doc = 0
 let g:pymode_run = 0
 let g:pymode_breakpoint = 1
@@ -96,12 +97,14 @@ let g:SuperTabDefaultCompletionType = 'context'
 "let g:syntastic_java_javac_classpath = "./lib/*.jar\n./src"
 let g:syntastic_check_on_wq = 0     " Don't check syntax when quitting.
 
+set laststatus=2 "Airline's status line appears at startup, even is there is no split
+let g:airline#extensions#hunks#enabled = 1
 augroup vimrc_autocmds
     autocmd!
     if WINDOWS()
         autocmd FileType python set colorcolumn=80
         autocmd FileType python highlight ColorColumn ctermbg=lightgrey guibg=darkgrey
-    else 
+    else
         autocmd FileType python set colorcolumn=80
         autocmd FileType python highlight ColorColumn ctermbg=lightgrey guibg=lightgrey
     endif
