@@ -11,3 +11,6 @@
 	ci = commit
 [diff]
 	tool = vimdiff
+
+[credential "https://github.com"]
+	username = chdupre
