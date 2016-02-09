@@ -1,0 +1,13 @@
+[user]
+	name = Christophe Dupre
+	email = ch_dupre@yahoo.com
+[core]
+	editor = vim
+[alias]
+	st = status
+	co = checkout
+	br = branch
+	up = rebase
+	ci = commit
+[diff]
+	tool = vimdiff
