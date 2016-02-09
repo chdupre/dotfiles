@@ -47,12 +47,12 @@ esac
 
 if [ -n "$force_color_prompt" ]; then
     if [ -x /usr/bin/tput ] && tput setaf 1 >&/dev/null; then
-	# We have color support; assume it's compliant with Ecma-48
-	# (ISO/IEC-6429). (Lack of such support is extremely rare, and such
-	# a case would tend to support setf rather than setaf.)
-	color_prompt=yes
+    # We have color support; assume it's compliant with Ecma-48
+    # (ISO/IEC-6429). (Lack of such support is extremely rare, and such
+    # a case would tend to support setf rather than setaf.)
+    color_prompt=yes
     else
-	color_prompt=
+    color_prompt=
     fi
 fi
 
@@ -112,6 +112,9 @@ if ! shopt -oq posix; then
     . /etc/bash_completion
   fi
 fi
+
+export TERM=screen-256color-bce
+
 alias t='~/Dropbox/TODO/todo.sh'
 
 export QHOME=/opt/q/
@@ -123,4 +126,4 @@ alias q="rlwrap -c -r q"
 alias pings="ping 192.168.0.1"
 alias pingy="ping www.yahoo.com"
 
-export TERM=screen-256color-bce
+alias vimrc='vim ~/dotfiles/vimrc'
