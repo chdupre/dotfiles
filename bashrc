@@ -127,3 +127,4 @@ alias pings="ping 192.168.0.1"
 alias pingy="ping www.yahoo.com"
 
 alias vimrc='vim ~/dotfiles/vimrc'
+alias fbi='cd ~/programming/FiduciaryBenchmarks/fbi/'
