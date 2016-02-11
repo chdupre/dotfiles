@@ -18,15 +18,16 @@ set rtp+=~/.vim/bundle/ctrlp.vim
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
 Bundle 'scrooloose/nerdtree'
-Bundle 'davidhalter/jedi-vim'
+Bundle 'kien/ctrlp.vim'
 Bundle 'vim-airline/vim-airline'
 Bundle 'altercation/vim-colors-solarized'
 Bundle 'tpope/vim-fugitive'
-Bundle 'klen/python-mode'
-Bundle 'kien/ctrlp.vim'
-Bundle 'ervandew/supertab'
 Bundle 'derekwyatt/vim-scala'
 Bundle 'derekwyatt/vim-fswitch'
+
+Bundle 'davidhalter/jedi-vim'
+Bundle 'klen/python-mode'
+Bundle 'ervandew/supertab'
 Bundle 'tfnico/vim-gradle'
 Bundle 'scrooloose/syntastic'
 Bundle 'Raimondi/delimitMate'
