@@ -126,4 +126,5 @@ alias q="rlwrap -c -r q"
 alias pings="ping 192.168.0.1"
 alias pingy="ping www.yahoo.com"
 
-alias vimrc='vim ~/dotfiles/vimrc'
+alias vimrc='vim ~/.vimrc'
+alias histg='history | grep'

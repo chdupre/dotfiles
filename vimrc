@@ -26,6 +26,7 @@ Bundle 'klen/python-mode'
 Bundle 'kien/ctrlp.vim'
 Bundle 'ervandew/supertab'
 Bundle 'derekwyatt/vim-scala'
+Bundle 'derekwyatt/vim-fswitch'
 Bundle 'tfnico/vim-gradle'
 Bundle 'scrooloose/syntastic'
 Bundle 'Raimondi/delimitMate'
@@ -80,6 +81,24 @@ set wildmode=longest,list
 
 set splitbelow
 set splitright
+
+let g:scala_use_default_keymappings = 0
+
+" System default for mappings is now the "," character
+let mapleader = ","
+au FileType scala let b:fswitchdst = 'scala'
+
+" Matches scala files that do not end with Test.scala
+au BufEnter *\(Test\)\@!.scala let b:fswitchlocs = 'reg:+/app/+/test/+' | let b:fswitchfnames='/$/Test/'
+" Use the one below if you're dealing with a Scala app with src/main/scala and
+" src/test/scala intead of app and test directories (like Play)
+" au BufEnter *\(Test\)\@!.scala let b:fswitchlocs = 'reg:+/src/main/scala+/src/test/scala/+' | let b:fswitchfnames='/$/Test/'
+
+" Matches scala files that do end with Test.scala
+au BufEnter *Test.scala let b:fswitchlocs = 'reg:+/test/+/app/+' | let b:fswitchfnames='/Test$//'
+" au BufEnter *Test.scala let b:fswitchlocs = 'reg:+/src/test/scala+/src/main/scala/+' | let b:fswitchfnames='/Test$//'
+
+let b:fswitchlocs = 'reg:/app/test/'
 
 let g:jedi#use_tabs_not_buffers = 0 " new buffer when jumping around
 
@@ -137,3 +156,6 @@ function! WindowdDiff()
   endif
   silent execute '!' . cmd . ' ' . opt . arg1 . ' ' . arg2 . ' > ' . arg3 . eq
 endfunction
+
+
+nmap <silent> ,of :FSHere<CR>
