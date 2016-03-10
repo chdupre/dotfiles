@@ -24,13 +24,13 @@ Bundle 'altercation/vim-colors-solarized'
 Bundle 'tpope/vim-fugitive'
 Bundle 'derekwyatt/vim-scala'
 Bundle 'derekwyatt/vim-fswitch'
-
-Bundle 'davidhalter/jedi-vim'
-Bundle 'klen/python-mode'
+"Bundle 'ensime/ensime-vim'
+"Bundle 'davidhalter/jedi-vim'
+"Bundle 'klen/python-mode'
 Bundle 'ervandew/supertab'
-Bundle 'tfnico/vim-gradle'
-Bundle 'scrooloose/syntastic'
-Bundle 'Raimondi/delimitMate'
+"Bundle 'tfnico/vim-gradle'
+"Bundle 'scrooloose/syntastic'
+"Bundle 'Raimondi/delimitMate'
 call vundle#end()
 
 if WINDOWS()
