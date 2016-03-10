@@ -119,7 +119,7 @@ alias t='~/Dropbox/TODO/todo.sh'
 
 export QHOME=/opt/q/
 export QARCH=l32
-export PATH=$PATH:$QHOME/$QARCH
+export PATH=$PATH:$QHOME/$QARCH:/opt/activator
 
 alias q="rlwrap -c -r q"
 
@@ -128,4 +128,7 @@ alias pingy="ping www.yahoo.com"
 
 alias vimrc='vim ~/.vimrc'
 alias fbi='cd ~/programming/FiduciaryBenchmarks/fbi/'
+alias voa='cd ~/programming/voa/'
 alias histg='history | grep'
+
+source ~/.bashrc.voa

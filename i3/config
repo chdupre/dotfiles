@@ -12,14 +12,14 @@
 set $mod Mod4
 
 set $workspace1   "1: Terminal"
-set $workspace2   "2: Firefox"
-set $workspace3   "3: Mail"
-set $workspace4   "4: "
+set $workspace2   "2: "
+set $workspace3   "3: www"
+set $workspace4   "4: mail"
 set $workspace5   "5: Scratch"
 set $workspace6   "6: "
 set $workspace7   "7: "
 set $workspace8   "8: "
-set $workspace9   "9: "
+set $workspace9   "9: Chat"
 set $workspace10 "10: Music"
 
 # font for window titles. ISO 10646 = Unicode
@@ -34,13 +34,14 @@ bindsym $mod+Return exec i3-sensible-terminal
 bindsym $mod+Shift+Q kill
 
 # start dmenu (a program launcher)
-bindsym $mod+d exec dmenu_run
-
-# change focus
-bindsym $mod+j focus left
-bindsym $mod+k focus down
-bindsym $mod+l focus up
-bindsym $mod+semicolon right
+set $dmenu "dmenu -f -i -fn 'DejaVu Sans-10' -l 20"
+bindsym $mod+Shift+d exec dmenu_run
+#bindsym $mod+d exec dmenu
+bindsym $mod+d exec j4-dmenu-desktop --dmenu=$dmenu --term=$term
+bindsym $mod+h focus left
+bindsym $mod+j focus down
+bindsym $mod+k focus up
+bindsym $mod+l focus right
 
 # alternatively, you can use the cursor keys:
 bindsym $mod+Left focus left
@@ -49,10 +50,10 @@ bindsym $mod+Up focus up
 bindsym $mod+Right focus right
 
 # move focused window
-bindsym $mod+Shift+J move left
-bindsym $mod+Shift+K move down
-bindsym $mod+Shift+L move up
-bindsym $mod+Shift+colon move right
+bindsym $mod+Shift+h move left
+bindsym $mod+Shift+j move down
+bindsym $mod+Shift+k move up
+bindsym $mod+Shift+l move right
 
 # alternatively, you can use the cursor keys:
 bindsym $mod+Shift+Left move left
@@ -61,7 +62,7 @@ bindsym $mod+Shift+Up move up
 bindsym $mod+Shift+Right move right
 
 # split in horizontal orientation
-bindsym $mod+h split h
+bindsym $mod+bar split h
 
 # split in vertical orientation
 bindsym $mod+v split v
@@ -78,7 +79,7 @@ bindsym $mod+e layout default
 bindsym $mod+Shift+space floating toggle
 
 # change focus between tiling / floating windows
-bindsym $mod+space focus mode_toggle
+#bindsym $mod+space focus mode_toggle
 
 # focus the parent container
 bindsym $mod+a focus parent
@@ -125,17 +126,17 @@ mode "resize" {
         # when pressing left, the window is resized so that it has
         # more space on its left
 
-bindsym j resize shrink left 10 px or 10 ppt
-bindsym Shift+J resize grow   left 10 px or 10 ppt
+bindsym h resize shrink left 10 px or 10 ppt
+bindsym Shift+H resize grow   left 10 px or 10 ppt
 
-bindsym k resize shrink down 10 px or 10 ppt
-bindsym Shift+K resize grow   down 10 px or 10 ppt
+bindsym j resize shrink down 10 px or 10 ppt
+bindsym Shift+J resize grow   down 10 px or 10 ppt
 
-bindsym l resize shrink up 10 px or 10 ppt
-bindsym Shift+L resize grow   up 10 px or 10 ppt
+bindsym k resize shrink up 10 px or 10 ppt
+bindsym Shift+K resize grow   up 10 px or 10 ppt
 
-bindsym semicolon resize shrink right 10 px or 10 ppt
-bindsym Shift+colon resize grow   right 10 px or 10 ppt
+bindsym l resize shrink right 10 px or 10 ppt
+bindsym Shift+L resize grow   right 10 px or 10 ppt
 
         # same bindings, but for the arrow keys
 bindsym Left resize shrink left 10 px or 10 ppt
@@ -188,8 +189,8 @@ bindsym XF86Mail exec thunderbird
 bindsym XF86HomePage exec firefox
 
 assign [class="Gnome-terminal"] $workspace1
-assign [class="Firefox"] $workspace2
-assign [class="Thunderbird"] $workspace3
+assign [class="Firefox"] $workspace3
+assign [class="Thunderbird"] $workspace4
 assign [class="Speedcrunch"] $workspace5
 assign [class="Rhythmbox"] $workspace10
 
