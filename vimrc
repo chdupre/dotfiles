@@ -24,13 +24,15 @@ Bundle 'altercation/vim-colors-solarized'
 Bundle 'tpope/vim-fugitive'
 Bundle 'derekwyatt/vim-scala'
 Bundle 'derekwyatt/vim-fswitch'
-"Bundle 'ensime/ensime-vim'
+Bundle 'ensime/ensime-vim'
 "Bundle 'davidhalter/jedi-vim'
 "Bundle 'klen/python-mode'
 Bundle 'ervandew/supertab'
 "Bundle 'tfnico/vim-gradle'
-"Bundle 'scrooloose/syntastic'
+Bundle 'scrooloose/syntastic'
 "Bundle 'Raimondi/delimitMate'
+Bundle 'xolox/vim-notes'
+Bundle 'xolox/vim-misc'
 call vundle#end()
 
 if WINDOWS()
@@ -116,9 +118,14 @@ let g:SuperTabDefaultCompletionType = 'context'
 
 "let g:syntastic_java_javac_classpath = "./lib/*.jar\n./src"
 let g:syntastic_check_on_wq = 0     " Don't check syntax when quitting.
+"let g:syntastic_mode_map = { 'passive_filetypes': ['scala', 'scss'] }
 
 set laststatus=2 "Airline's status line appears at startup, even is there is no split
 let g:airline#extensions#hunks#enabled = 1
+
+let g:notes_directories = ['~/Dropbox/Notes']"
+
+
 augroup vimrc_autocmds
     autocmd!
     if WINDOWS()
