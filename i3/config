@@ -192,6 +192,11 @@ assign [class="Gnome-terminal"] $workspace1
 assign [class="Firefox"] $workspace3
 assign [class="Thunderbird"] $workspace4
 assign [class="Speedcrunch"] $workspace5
+assign [class="Scudcloud"] $workspace9
+assign [class="Skype"] $workspace9
 assign [class="Rhythmbox"] $workspace10
 
 exec_always feh --bg-scale ~/dotfiles/wallpaper.png
+exec nm-applet
+exec dropbox start
+exec setxkbmap -option ctrl:nocaps

@@ -33,6 +33,8 @@ Bundle 'scrooloose/syntastic'
 "Bundle 'Raimondi/delimitMate'
 Bundle 'xolox/vim-notes'
 Bundle 'xolox/vim-misc'
+Bundle 'vimwiki/vimwiki'
+Bundle 'mattn/calendar-vim'
 call vundle#end()
 
 if WINDOWS()
@@ -125,6 +127,7 @@ let g:airline#extensions#hunks#enabled = 1
 
 let g:notes_directories = ['~/Dropbox/Notes']"
 
+let g:vimwiki_list = [{'path': '~/Dropbox/Wiki/'}]
 
 augroup vimrc_autocmds
     autocmd!
