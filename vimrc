@@ -30,11 +30,12 @@ Bundle 'ensime/ensime-vim'
 Bundle 'ervandew/supertab'
 "Bundle 'tfnico/vim-gradle'
 Bundle 'scrooloose/syntastic'
-"Bundle 'Raimondi/delimitMate'
+Bundle 'Raimondi/delimitMate'
 Bundle 'xolox/vim-notes'
 Bundle 'xolox/vim-misc'
 Bundle 'vimwiki/vimwiki'
 Bundle 'mattn/calendar-vim'
+Bundle 'elzr/vim-json'
 call vundle#end()
 
 if WINDOWS()
@@ -69,6 +70,7 @@ set autoindent    " align the new line indent with the previous line
 
 set backspace=2   " make backspace work like most other apps
 
+nnoremap <silent> <C-l> :<C-u>nohlsearch<CR><C-l>
 
 syntax on
 filetype plugin indent on
@@ -78,6 +80,8 @@ set hlsearch
 
 " Nerd Tree
  map <F2> :NERDTreeToggle<CR>
+ map <F3> :NERDTreeFocus<CR>
+ map <F4> :NERDTreeFocusClose<CR>
 
 "When more than one match, list all matches and
 "complete till longest common string.
@@ -92,6 +96,7 @@ let g:scala_use_default_keymappings = 0
 " System default for mappings is now the "," character
 let mapleader = ","
 au FileType scala let b:fswitchdst = 'scala'
+au FileType scala nnoremap <localleader>df :EnDeclaration<CR><Paste>
 
 " Matches scala files that do not end with Test.scala
 au BufEnter *\(Test\)\@!.scala let b:fswitchlocs = 'reg:+/app/+/test/+' | let b:fswitchfnames='/$/Test/'
@@ -170,3 +175,11 @@ endfunction
 
 
 nmap <silent> ,of :FSHere<CR>
+    
+" "ino " ""<left>
+" "ino ' ''<left>
+" "ino ( ()<left>
+" "ino [ []<left>
+" "ino { {}<left>
+" "ino {<CR> {<CR>}<ESC>O    
+    

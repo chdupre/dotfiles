@@ -178,6 +178,22 @@ bindsym XF86MonBrightnessDown exec xbacklight -dec 20 # decrease screen brightne
 # Touchpad controls
 bindsym XF86TouchpadToggle exec /some/path/toggletouchpad.sh # toggle touchpad
 
+## Manual management of external displays
+# Set the shortcuts and what they do
+set $mode_display Ext Screen (l) Laptop ON, (m) Monitor, (b) Both on, (x) Both on
+mode "$mode_display" {
+    bindsym l exec --no-startup-id xrandr --output eDP1 --auto --output HDMI1 --auto --off, mode "default"
+    bindsym m exec --no-startup-id xrandr --output HDMI1 --auto --output eDP1 --auto --off, mode "default"
+    bindsym b exec --no-startup-id xrandr --output eDP1 --auto --output HDMI1 --auto --left-of eDP1, mode "default"
+    bindsym x exec --no-startup-id xrandr --output eDP1 --auto --output HDMI1 --auto --left-of eDP1, mode "default"
+
+    # back to normal: Enter or Escape
+    bindsym Return mode "default"
+    bindsym Escape mode "default"
+}
+# Declare here the shortcut to bring the display selection menu
+bindsym $mod+x mode "$mode_display"
+
 # Media player controls
 bindsym XF86AudioPlay exec playerctl play
 bindsym XF86AudioPause exec playerctl pause
@@ -200,3 +216,4 @@ exec_always feh --bg-scale ~/dotfiles/wallpaper.png
 exec nm-applet
 exec dropbox start
 exec setxkbmap -option ctrl:nocaps
+exec synclient MaxTapTime=0

@@ -113,6 +113,14 @@ if ! shopt -oq posix; then
   fi
 fi
 
+function _update_ps1() {
+    PS1="$(~/powerline-shell.py --mode compatible $? 2> /dev/null)"
+}
+
+if [ "$TERM" != "linux" ]; then
+        PROMPT_COMMAND="_update_ps1; $PROMPT_COMMAND"
+fi
+
 export TERM=screen-256color-bce
 
 alias t='~/Dropbox/TODO/todo.sh'
@@ -129,7 +137,10 @@ alias pingy="ping www.yahoo.com"
 
 alias vimrc='vim ~/.vimrc'
 alias fbi='cd ~/programming/FiduciaryBenchmarks/fbi/'
-alias voa='cd ~/programming/voa/'
 alias hist='history | grep'
 
 source ~/.bashrc.voa
+export PATH="$HOME/.rbenv/bin:$PATH"
+eval "$(rbenv init -)"
+export PATH="$HOME/.rbenv/plugins/ruby-build/bin:$PATH"
+export PATH="$HOME/.rbenv/plugins/ruby-build/bin:$PATH"
