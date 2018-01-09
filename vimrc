@@ -88,7 +88,7 @@ set autoread
 " Nerd Tree
  map <F2> :NERDTreeToggle<CR>
  map <F3> :NERDTreeFocus<CR>
- map <F4> :NERDTreeFocusClose<CR>
+ nnoremap <silent><expr> <F4> (winnr()==g:NERDTree.GetWinNum() ? ":NERDTreeClose\<CR>" : ":NERDTreeFocus\<CR>")
 
 "When more than one match, list all matches and
 "complete till longest common string.

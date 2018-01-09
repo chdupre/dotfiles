@@ -146,16 +146,6 @@ alias vimrc='vim ~/.vimrc'
 alias fbi='cd ~/programming/FiduciaryBenchmarks/fbi/'
 alias hist='history | grep'
 alias scala="scala -Dscala.color=true"
-source ~/.bashrc.voa
-#export PATH="$HOME/.rbenv/bin:$PATH"
-#eval "$(rbenv init -)"
-#export PATH="$HOME/.rbenv/plugins/ruby-build/bin:$PATH"
-#export PATH="$HOME/.rbenv/plugins/ruby-build/bin:$PATH"
 export JAVA_HOME=/usr/lib/jvm/java-8-oracle/
 export SBT_OPTS="-XX:+CMSClassUnloadingEnabled -XX:PermSize=256M -XX:MaxPermSize=256M -Xmx512m -Xms218m"
 
-alias updatesm="set p=`pwd`;voa; cd service-manager-config; git pull origin master; cd $p;"
-findSmPort() {
-    #do things with parameters like $1 such as
-    ~/scripts/sm.py $1
-}
