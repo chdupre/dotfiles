@@ -16,27 +16,31 @@ filetype off                  " required
 " set the runtime path to include Vundle and initialize
 set rtp+=~/.vim/bundle/ctrlp.vim
 set rtp+=~/.vim/bundle/Vundle.vim
-call vundle#begin()
-Bundle 'scrooloose/nerdtree'
-Bundle 'kien/ctrlp.vim'
-Bundle 'vim-airline/vim-airline'
-Bundle 'altercation/vim-colors-solarized'
-Bundle 'tpope/vim-fugitive'
-Bundle 'derekwyatt/vim-scala'
-Bundle 'derekwyatt/vim-fswitch'
-Bundle 'ensime/ensime-vim'
-"Bundle 'davidhalter/jedi-vim'
-"Bundle 'klen/python-mode'
-Bundle 'ervandew/supertab'
-"Bundle 'tfnico/vim-gradle'
-Bundle 'scrooloose/syntastic'
-Bundle 'Raimondi/delimitMate'
-Bundle 'xolox/vim-notes'
-Bundle 'xolox/vim-misc'
-Bundle 'vimwiki/vimwiki'
-Bundle 'mattn/calendar-vim'
-Bundle 'elzr/vim-json'
-call vundle#end()
+"call vundle#begin()
+call plug#begin('~/.vim/plugged')
+Plug 'chdupre/nerdtree'
+Plug 'kien/ctrlp.vim'
+Plug 'vim-airline/vim-airline'
+Plug 'altercation/vim-colors-solarized'
+Plug 'tpope/vim-fugitive'
+Plug 'derekwyatt/vim-scala'
+Plug 'derekwyatt/vim-fswitch'
+Plug 'ensime/ensime-vim'
+"Plug 'davidhalter/jedi-vim'
+"Plug 'klen/python-mode'
+Plug 'ervandew/supertab'
+"Plug 'tfnico/vim-gradle'
+Plug 'scrooloose/syntastic'
+Plug 'Raimondi/delimitMate'
+Plug 'xolox/vim-notes'
+Plug 'xolox/vim-misc'
+Plug 'vimwiki/vimwiki'
+Plug 'mattn/calendar-vim'
+Plug 'elzr/vim-json'
+Plug 'tpope/vim-surround'
+Plug 'mileszs/ack.vim'
+"call vundle#end()
+call plug#end()
 
 if WINDOWS()
     set diffexpr=WindowdDiff()
@@ -78,6 +82,9 @@ set nobackup
 set noswapfile
 set hlsearch
 
+" Automatically read a file that has changed on disk
+set autoread
+
 " Nerd Tree
  map <F2> :NERDTreeToggle<CR>
  map <F3> :NERDTreeFocus<CR>
@@ -91,12 +98,27 @@ set wildmode=longest,list
 set splitbelow
 set splitright
 
+let delimitMate_expand_cr = 1
+
 let g:scala_use_default_keymappings = 0
 
 " System default for mappings is now the "," character
-let mapleader = ","
+let mapleader=","
 au FileType scala let b:fswitchdst = 'scala'
 au FileType scala nnoremap <localleader>df :EnDeclaration<CR><Paste>
+au FileType scala nnoremap <buffer> <silent> K  :EnDocBrowse<CR>
+au FileType scala nnoremap <buffer> <silent> gd :EnDeclaration<CR>
+
+au FileType scala nnoremap <buffer> <silent> <C-]>  :EnDeclaration<CR>
+au FileType scala nnoremap <buffer> <silent> <C-w>] :EnDeclarationSplit<CR>
+au FileType scala nnoremap <buffer> <silent> <C-w><C-]> :EnDeclarationSplit<CR>
+au FileType scala nnoremap <buffer> <silent> <C-v>] :EnDeclarationSplit v<CR>
+
+au FileType scala nnoremap <buffer> <silent> <LocalLeader>i :EnInspectType<CR>
+au FileType scala nnoremap <buffer> <silent> <LocalLeader>I :EnSuggestImport<CR>
+au FileType scala nnoremap <buffer> <silent> <LocalLeader>r :EnRename<CR>
+
+nnoremap <Leader>f :NERDTreeFind<CR>
 
 " Matches scala files that do not end with Test.scala
 au BufEnter *\(Test\)\@!.scala let b:fswitchlocs = 'reg:+/app/+/test/+' | let b:fswitchfnames='/$/Test/'
@@ -133,6 +155,12 @@ let g:airline#extensions#hunks#enabled = 1
 let g:notes_directories = ['~/Dropbox/Notes']"
 
 let g:vimwiki_list = [{'path': '~/Dropbox/Wiki/'}]
+
+if executable('ag')
+  let g:ackprg = 'ag --vimgrep'
+endif
+
+let ensime_server_v2=1
 
 augroup vimrc_autocmds
     autocmd!
@@ -173,8 +201,19 @@ function! WindowdDiff()
   silent execute '!' . cmd . ' ' . opt . arg1 . ' ' . arg2 . ' > ' . arg3 . eq
 endfunction
 
+function! s:VSetSearch()
+  let temp = @@
+  norm! gvy
+  let @/ = '\V' . substitute(escape(@@, '\'), '\n', '\\n', 'g')
+  let @@ = temp
+endfunction
+
+vnoremap * :<C-u>call <SID>VSetSearch()<CR>//<CR>
+vnoremap # :<C-u>call <SID>VSetSearch()<CR>??<CR>
 
 nmap <silent> ,of :FSHere<CR>
+command! Difft windo diffthis
+command! Diffo windo diffoff
     
 " "ino " ""<left>
 " "ino ' ''<left>

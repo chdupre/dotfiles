@@ -13,9 +13,9 @@
 	tool = vimdiff
 [merge]
 	tool = vimdiff
-    conflictstyle = diff3
+	conflictstyle = diff3
 [mergetool]
-    prompt = false
+	prompt = false
 
 [credential "https://github.com"]
 	username = chdupre

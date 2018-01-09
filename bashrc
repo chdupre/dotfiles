@@ -16,8 +16,13 @@ HISTCONTROL=ignoreboth
 shopt -s histappend
 
 # for setting history length see HISTSIZE and HISTFILESIZE in bash(1)
-HISTSIZE=1000
-HISTFILESIZE=2000
+HISTFILESIZE=1000000
+HISTSIZE=1000000
+# show time in hist file
+HISTTIMEFORMAT='%F %T '
+shopt -s cmdhist
+# store hist automatically
+PROMPT_COMMAND='history -a'
 
 # check the window size after each command and, if necessary,
 # update the values of LINES and COLUMNS.
@@ -124,6 +129,8 @@ fi
 export TERM=screen-256color-bce
 
 alias t='~/Dropbox/TODO/todo.sh'
+alias twl='~/Dropbox/TODO/todo.sh list @work'
+alias twa='~/Dropbox/TODO/todo.sh add @work'
 
 export QHOME=/opt/q/
 export QARCH=l32
@@ -138,9 +145,17 @@ alias pingy="ping www.yahoo.com"
 alias vimrc='vim ~/.vimrc'
 alias fbi='cd ~/programming/FiduciaryBenchmarks/fbi/'
 alias hist='history | grep'
-
+alias scala="scala -Dscala.color=true"
 source ~/.bashrc.voa
-export PATH="$HOME/.rbenv/bin:$PATH"
-eval "$(rbenv init -)"
-export PATH="$HOME/.rbenv/plugins/ruby-build/bin:$PATH"
-export PATH="$HOME/.rbenv/plugins/ruby-build/bin:$PATH"
+#export PATH="$HOME/.rbenv/bin:$PATH"
+#eval "$(rbenv init -)"
+#export PATH="$HOME/.rbenv/plugins/ruby-build/bin:$PATH"
+#export PATH="$HOME/.rbenv/plugins/ruby-build/bin:$PATH"
+export JAVA_HOME=/usr/lib/jvm/java-8-oracle/
+export SBT_OPTS="-XX:+CMSClassUnloadingEnabled -XX:PermSize=256M -XX:MaxPermSize=256M -Xmx512m -Xms218m"
+
+alias updatesm="set p=`pwd`;voa; cd service-manager-config; git pull origin master; cd $p;"
+findSmPort() {
+    #do things with parameters like $1 such as
+    ~/scripts/sm.py $1
+}
