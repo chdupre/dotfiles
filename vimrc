@@ -22,12 +22,22 @@ Plug 'chdupre/nerdtree'
 Plug 'kien/ctrlp.vim'
 Plug 'vim-airline/vim-airline'
 Plug 'altercation/vim-colors-solarized'
-Plug 'tpope/vim-fugitive'
+"Plug 'tpope/vim-fugitive'
 Plug 'derekwyatt/vim-scala'
 Plug 'derekwyatt/vim-fswitch'
 Plug 'ensime/ensime-vim'
+if has('nvim')
+  Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+else
+  Plug 'Shougo/deoplete.nvim'
+  Plug 'roxma/nvim-yarp'
+  Plug 'roxma/vim-hug-neovim-rpc'
+endif
+Plug 'prabirshrestha/async.vim'
+Plug 'prabirshrestha/vim-lsp'
+Plug 'ryanolsonx/vim-lsp-python'
 "Plug 'davidhalter/jedi-vim'
-"Plug 'klen/python-mode'
+"Plug 'python-mode/python-mode'
 Plug 'ervandew/supertab'
 "Plug 'tfnico/vim-gradle'
 Plug 'scrooloose/syntastic'
@@ -41,6 +51,15 @@ Plug 'tpope/vim-surround'
 Plug 'mileszs/ack.vim'
 "call vundle#end()
 call plug#end()
+
+if executable('pyls')
+    au User lsp_setup call lsp#register_server({
+        \ 'name': 'pyls',
+        \ 'cmd': {server_info->['pyls']},
+        \ 'whitelist': ['python'],
+        \ })
+endif
+
 
 if WINDOWS()
     set diffexpr=WindowdDiff()
@@ -134,13 +153,17 @@ let b:fswitchlocs = 'reg:/app/test/'
 
 let g:jedi#use_tabs_not_buffers = 0 " new buffer when jumping around
 
-let g:pymode_folding = 0    "disable folding by default
-let g:pymode_lint = 1       "Turn on code checking
-let g:pymode_lint_write = 1
-let g:pymode_rope = 0
-let g:pymode_doc = 0
-let g:pymode_run = 0
-let g:pymode_breakpoint = 1
+"let g:pymode_folding = 0    "disable folding by default
+"let g:pymode_lint = 1       "Turn on code checking
+"let g:pymode_lint_write = 1
+"let g:pymode_rope = 0
+"let g:pymode_doc = 0
+"let g:pymode_run = 0
+"let g:pymode_run = 1    "allow to run script
+"let g:pymode_breakpoint = 1
+"let g:mymode_python = 'python3'
+"let g:pymode_rope_rename_bind = '<C-c>rr'
+let g:deoplete#enable_at_startup = 1
 
 let g:SuperTabDefaultCompletionType = 'context'
 :set guioptions-=L "left hand side scrollbar is disabled

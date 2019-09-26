@@ -122,9 +122,9 @@ function _update_ps1() {
     PS1="$(~/powerline-shell.py --mode compatible $? 2> /dev/null)"
 }
 
-if [ "$TERM" != "linux" ]; then
-        PROMPT_COMMAND="_update_ps1; $PROMPT_COMMAND"
-fi
+#if [ "$TERM" != "linux" ]; then
+#        PROMPT_COMMAND="_update_ps1; $PROMPT_COMMAND"
+#fi
 
 export TERM=screen-256color-bce
 
@@ -146,6 +146,7 @@ alias vimrc='vim ~/.vimrc'
 alias fbi='cd ~/programming/FiduciaryBenchmarks/fbi/'
 alias hist='history | grep'
 alias scala="scala -Dscala.color=true"
+alias cdf="cd /home/ch/Dropbox/Budget/Finance/2017/"
 export JAVA_HOME=/usr/lib/jvm/java-8-oracle/
 export SBT_OPTS="-XX:+CMSClassUnloadingEnabled -XX:PermSize=256M -XX:MaxPermSize=256M -Xmx512m -Xms218m"
 
