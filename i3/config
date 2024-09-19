@@ -92,7 +92,7 @@ bindsym $mod+1 workspace $workspace1
 bindsym $mod+2 workspace $workspace2
 bindsym $mod+3 workspace $workspace3
 bindsym $mod+4 workspace $workspace4
-bindsym $mod+5 workspace $workspace5
+bindsym $mod+5 workspace $workspace5, mode "ms"
 bindsym $mod+6 workspace $workspace6
 bindsym $mod+7 workspace $workspace7
 bindsym $mod+8 workspace $workspace8
@@ -117,6 +117,27 @@ bindsym $mod+Shift+C reload
 bindsym $mod+Shift+R restart
 # exit i3 (logs you out of your X session)
 bindsym $mod+Shift+E exit
+
+mode "ms" {
+        # These bindings are for when RDP to a windows server
+        # most bindings are disabled.
+
+bindsym $mod+1 workspace $workspace1, mode "default"
+bindsym $mod+2 workspace $workspace2, mode "default"
+bindsym $mod+3 workspace $workspace3, mode "default"
+bindsym $mod+4 workspace $workspace4, mode "default"
+bindsym $mod+5 workspace $workspace5, mode "ms"
+bindsym $mod+6 workspace $workspace6, mode "default"
+bindsym $mod+7 workspace $workspace7, mode "default"
+bindsym $mod+8 workspace $workspace8, mode "default"
+bindsym $mod+9 workspace $workspace9, mode "default"
+bindsym $mod+0 workspace $workspace10, mode "default"
+
+bindsym $mod+Shift+parenleft move workspace $workspace9
+#
+# enter fullscreen mode for the focused container
+bindsym $mod+f fullscreen
+}
 
 # resize window (you can also use the mouse for that)
 mode "resize" {
@@ -207,14 +228,19 @@ bindsym Print exec gnome-screenshot -a --interactive
 
 assign [class="Gnome-terminal"] $workspace1
 assign [class="Firefox"] $workspace3
+assign [class="firefox"] $workspace3
 assign [class="Thunderbird"] $workspace4
+assign [class="thunderbird"] $workspace4
+assign [class="Wfica"] $workspace5
 assign [class="Speedcrunch"] $workspace5
 assign [class="Scudcloud"] $workspace9
 assign [class="Skype"] $workspace9
 assign [class="Rhythmbox"] $workspace10
+#to add some more, run xprop, click on app, and search for WM_CLASS
 
 exec_always feh --bg-scale ~/dotfiles/wallpaper.png
 exec nm-applet
 exec dropbox start
 exec setxkbmap -option ctrl:nocaps
 exec synclient MaxTapTime=0
+#exec_always xautolock -time 60  -locker "systemctl suspend"  -notifier "notify-send 'Suspending in 60 secs'" -notify 60  -detectsleep

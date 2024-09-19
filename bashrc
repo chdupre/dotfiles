@@ -134,7 +134,7 @@ alias twa='~/Dropbox/TODO/todo.sh add @work'
 
 export QHOME=/opt/q/
 export QARCH=l32
-export PATH=$PATH:$QHOME/$QARCH:/opt/activator:~/Downloads/bin
+export PATH=$PATH:$QHOME/$QARCH:/opt/activator:~/Downloads/bin:/home/ch/.config/emacs/bin/
 export BROWSER=firefox
 
 alias q="rlwrap -c -r q"
@@ -143,10 +143,10 @@ alias pings="ping 192.168.0.1"
 alias pingy="ping www.yahoo.com"
 
 alias vimrc='vim ~/.vimrc'
-alias fbi='cd ~/programming/FiduciaryBenchmarks/fbi/'
 alias hist='history | grep'
 alias scala="scala -Dscala.color=true"
 alias cdf="cd /home/ch/Dropbox/Budget/Finance/2017/"
-export JAVA_HOME=/usr/lib/jvm/java-8-oracle/
-export SBT_OPTS="-XX:+CMSClassUnloadingEnabled -XX:PermSize=256M -XX:MaxPermSize=256M -Xmx512m -Xms218m"
+
+alias ipython='ipython3'
+alias pip='pip3'
 

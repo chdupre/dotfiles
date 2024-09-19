@@ -21,7 +21,7 @@ call plug#begin('~/.vim/plugged')
 Plug 'chdupre/nerdtree'
 Plug 'kien/ctrlp.vim'
 Plug 'vim-airline/vim-airline'
-Plug 'altercation/vim-colors-solarized'
+"Plug 'altercation/vim-colors-solarized'
 "Plug 'tpope/vim-fugitive'
 Plug 'derekwyatt/vim-scala'
 Plug 'derekwyatt/vim-fswitch'
@@ -35,7 +35,7 @@ else
 endif
 Plug 'prabirshrestha/async.vim'
 Plug 'prabirshrestha/vim-lsp'
-Plug 'ryanolsonx/vim-lsp-python'
+"Plug 'ryanolsonx/vim-lsp-python'
 "Plug 'davidhalter/jedi-vim'
 "Plug 'python-mode/python-mode'
 Plug 'ervandew/supertab'
@@ -52,13 +52,13 @@ Plug 'mileszs/ack.vim'
 "call vundle#end()
 call plug#end()
 
-if executable('pyls')
-    au User lsp_setup call lsp#register_server({
-        \ 'name': 'pyls',
-        \ 'cmd': {server_info->['pyls']},
-        \ 'whitelist': ['python'],
-        \ })
-endif
+" if executable('pyls')
+"     au User lsp_setup call lsp#register_server({
+"         \ 'name': 'pyls',
+"         \ 'cmd': {server_info->['pyls']},
+"         \ 'whitelist': ['python'],
+"         \ })
+" endif
 
 
 if WINDOWS()
@@ -72,7 +72,7 @@ if has("gui_running")
         set guifont=Source\ Code\ Pro\ 12
     endif
 endif
-colorscheme solarized
+"colorscheme solarized
 set t_Co=256
 set background=dark
 
